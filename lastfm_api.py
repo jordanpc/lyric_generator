@@ -44,18 +44,27 @@ def getdatelist(startdate, lastdate):
         date = new_date
     return date_list
 
+def gettracksinfo(mbid):
+    url = 'http://ws.audioscrobbler.com/2.0/'
+    tracksinfo_url = f'{url}?method=track.getInfo&api_key={API_KEY}&mbid={mbid}&format=json'
+    response = requests.get(tracksinfo_url)
+    data = response.json()
+    listeners = data['track']['listeners']
+    playcount = data['track']['playcount']
+    date = data['track']['wiki']['published']
+    return (listeners, playcount, date)
+
 def gettoptracks(pages):
     # Create a dataframe
     columns = ['rank','artist_name','song_title','genres']
     df = pd.DataFrame(columns=columns)
     # define key variables
-    n=pages
     url = 'http://ws.audioscrobbler.com/2.0/'
     tag_name = 'pop'
-    for page in range(n):
+    for page in range(pages):
         tracksbytag_url = f'{url}?method=tag.gettoptracks&tag={tag_name}&api_key={API_KEY}&format=json&page={page}'
-        response = requests.get(tracksbytag_url)
-        data = response.json()
+        response_tracks = requests.get(tracksbytag_url)
+        data = response_tracks.json()
         tracks = data['tracks']['track']
         for track in tracks:
             try:
@@ -63,14 +72,24 @@ def gettoptracks(pages):
                 rank = track['@attr']['rank']
                 artist_name = track['artist']['name']
                 song_name = track['name']
+                duration = track['duration']
+                mbid = track['mbid']
+                track_info = gettracksinfo(mbid)
+                listeners = track_info[0]
+                playcount = track_info[1]
+                date = track_info[2]
             except KeyError:
                 rank = 'Not Available'
                 artist_name = 'Not Available'
                 song_name = 'Not Available'
             df = df.append({'rank':rank,
-                          'artist_name':artist_name,
-                          'song_title':song_name,
-                          'genres':genres}, ignore_index=True)
+                            'artist_name':artist_name,
+                            'song_title':song_name,
+                            'genres':genres,
+                            'duration':duration,
+                            'listeners':listeners,
+                            'playcount':playcount,
+                            'date':date}, ignore_index=True)
     return df
 
 # use last.fm API to generate a list of tags

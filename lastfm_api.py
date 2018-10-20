@@ -54,13 +54,13 @@ def gettracksinfo(mbid):
     date = data['track']['wiki']['published']
     return (listeners, playcount, date)
 
-def gettoptracks(pages):
+def gettoptracks(pages,genres):
     # Create a dataframe
     columns = ['rank','artist_name','song_title','genres']
     df = pd.DataFrame(columns=columns)
     # define key variables
     url = 'http://ws.audioscrobbler.com/2.0/'
-    tag_name = 'pop'
+    tag_name = f'{genres}'
     page_counter = 1
     for page in range(pages):
         tracksbytag_url = f'{url}?method=tag.gettoptracks&tag={tag_name}&api_key={API_KEY}&format=json&page={page}'
@@ -68,7 +68,7 @@ def gettoptracks(pages):
         data = response_tracks.json()
         tracks = data['tracks']['track']
         page_counter =+ 1
-        if page_counter % 10 == 0:
+        if page_counter % 2 == 0:
             print(f'{page_counter} pages are captured.')
         for track in tracks:
             try:
@@ -107,3 +107,49 @@ def gettoptags():
     tags_df = tags_df.sort_values(by=['reach'],ascending=False)
     tags_df = tags_df.set_index('name',drop=True)
     return tags_df 
+
+def gettoptracks_v2(first_page,pages,genres):
+    "@first_page: the first page to call last.fm info"
+    "@pages: number of page to pull"
+    "@genres: the genres to pull"
+    # Create a dataframe
+    columns = ['rank','artist_name','song_title','genres']
+    df = pd.DataFrame(columns=columns)
+    # define key variables
+    url = 'http://ws.audioscrobbler.com/2.0/'
+    tag_name = f'{genres}'
+    page_counter = 1
+    range_pages = range(first_page,first_page + pages)
+    for page in range_pages:
+        tracksbytag_url = f'{url}?method=tag.gettoptracks&tag={tag_name}&api_key={API_KEY}&format=json&page={page}'
+        response_tracks = requests.get(tracksbytag_url)
+        data = response_tracks.json()
+        tracks = data['tracks']['track']
+        page_counter =+ 1
+        if page_counter % 2 == 0:
+            print(f'{page_counter} pages are captured.')
+        for track in tracks:
+            try:
+                genres = tag_name
+                rank = track['@attr']['rank']
+                artist_name = track['artist']['name']
+                song_name = track['name']
+                duration = track['duration']
+                mbid = track['mbid']
+                track_info = gettracksinfo(mbid)
+                listeners = track_info[0]
+                playcount = track_info[1]
+                date = track_info[2]
+            except KeyError:
+                rank = 'Not Available'
+                artist_name = 'Not Available'
+                song_name = 'Not Available'
+            df = df.append({'rank':rank,
+                            'artist_name':artist_name,
+                            'song_title':song_name,
+                            'genres':genres,
+                            'duration':duration,
+                            'listeners':listeners,
+                            'playcount':playcount,
+                            'date':date}, ignore_index=True)
+    return df

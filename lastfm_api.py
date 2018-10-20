@@ -61,11 +61,15 @@ def gettoptracks(pages):
     # define key variables
     url = 'http://ws.audioscrobbler.com/2.0/'
     tag_name = 'pop'
+    page_counter = 1
     for page in range(pages):
         tracksbytag_url = f'{url}?method=tag.gettoptracks&tag={tag_name}&api_key={API_KEY}&format=json&page={page}'
         response_tracks = requests.get(tracksbytag_url)
         data = response_tracks.json()
         tracks = data['tracks']['track']
+        page_counter =+ 1
+        if page_counter % 10 == 0:
+            print(f'{page_counter} pages are captured.')
         for track in tracks:
             try:
                 genres = tag_name

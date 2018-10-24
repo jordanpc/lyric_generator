@@ -13,7 +13,8 @@ from keras.callbacks import ModelCheckpoint
 from keras.utils import np_utils
 # from __future__ import print_function, division
 from keras.datasets import mnist
-from keras.layers import Input, Dense, Reshape, Flatten, Dropout
+# removed Reshape from below dependency - was receiving error when running
+from keras.layers import Input, Dense, Flatten, Dropout
 from keras.layers import BatchNormalization, Activation, ZeroPadding2D
 from keras.layers.advanced_activations import LeakyReLU
 from keras.layers.convolutional import UpSampling2D, Conv2D

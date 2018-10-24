@@ -38,7 +38,7 @@ n_patterns = len(dataX)
 print("Total Patterns: ", n_patterns)
 
 # reshape X to be [samples, time steps, features]
-X = np.reshape(dataX, (n_patterns, seq_length, 1))
+X = np.array(dataX, (n_patterns, seq_length, 1))
 # normalize
 X = X / float(n_vocab)
 # one hot encode the output variable

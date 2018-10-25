@@ -11,7 +11,7 @@ from keras.callbacks import ModelCheckpoint
 from keras.utils import np_utils
 
 # load ascii text and covert to lowercase
-filename = "lyrics2.txt"
+filename = "lyrics.txt"
 raw_text = open(filename).read()
 raw_text = raw_text.lower()
 

@@ -68,7 +68,7 @@ model.compile(loss='categorical_crossentropy', optimizer='adam')
 # checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 # callbacks_list = [checkpoint]
 
-model.load('weights-improvement-02-2.1111-bigger.hdf5')
+model.load_weights('weights-improvement-02-2.1111-bigger.hdf5')
 
 # pick a random seed
 start = np.random.randint(0, len(dataX)-1)

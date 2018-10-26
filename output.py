@@ -18,7 +18,7 @@ raw_text = raw_text.lower()
 # create mapping of unique chars to integers
 chars = sorted(list(set(raw_text)))
 char_to_int = dict((c, i) for i, c in enumerate(chars))
-# int_to_char = dict((i, c) for i, c in enumerate(chars))
+int_to_char = dict((i, c) for i, c in enumerate(chars))
 
 
 # summarize the loaded data

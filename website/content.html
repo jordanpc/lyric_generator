@@ -20,16 +20,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Lyrics Generator</a>
+                <a class="navbar-brand" style="color:bisque">Lyrics Generator</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">About the team </a></li>
-                    <li><a href="index.html">Idea Overview</a></li>
-                    <li><a href="content.html">Project Overview</a></li>
-                    <li><a href="content.html">Conclusion</a></li>
+                <ul class="nav navbar-nav" id="navbar-content">
+                    <li><a href="index.html" style="color:bisque">About the team </a></li>
+                    <li><a href="index.html" style="color:bisque">Idea Overview</a></li>
+                    <li><a href="content.html" style="color:bisque">Project Overview</a></li>
+                    <li><a href="content.html" style="color:bisque">Conclusion</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -39,15 +39,33 @@
     <div class="container">
         <div class="jumbotron">
             <h2>Project Overview</h2>
-            <h3></h3>
-            <p></p>
+            <h3>What's the Goal?</h3>
+                <p>Everybody loves music and who wouldn’t want to create their own song using technology (work smarter, not harder).The goal of our project was to generate song lyrics based on pop songs. To do this, we built a Long Short-Term Memory (LSTM) Recurrent Neural Network in Python with the Keras library package.</p>
+            <h3>What data did we use?</h3>
+                <h4>last.fm & Genius.com API</h4>
+                <div><img class="screenshot" src="images/api_juptyer.png"></div>
+                <p>It worked. However, we could not pull more than 5,000 tracks data due to (1) there might be a limit in the numbers of requests, and (2) we had to use last.fm & Genius.com which sometimes had different track names.</p>
+                <h4>Kaggle Dataset - 380,000+ lyrics from MetroLyrics</h4>
+                <div><img class="screenshot" src="images/kaggle.png"></div>
+                <p>We ended up using a static dataset in Kaggle. It contained over 380,000 songs data which is more than we can process.</p>
+            <h3>What Machine Learning did we use?</h3>
+                <h4>Generative adversarial networks</h4>
+                <div><img class="screenshot" src="https://cdn-images-1.medium.com/max/1600/1*BqswKfX5uJeZQcRTitahQA.jpeg"></div>
+                <h5>Defintion: Generative adversarial networks are a class of artificial intelligence algorithms used in unsupervised machine learning, implemented by a system of two neural networks contesting with each other in a zero-sum game framework. They were introduced by Ian Goodfellow et al. in 2014.</h5>
+                <p>Just way too complicated ...</p>
+                <h4></h4>
         </div>
     </div>
     <div class="container">
         <div class="jumbotron">
             <h2>Conclusion</h2>
-            <h3></h3>
-            <p></p>
+            <h3>What did we accomplish?</h3>
+            <h4>First result - with 2 epochs</h4>
+            <p>"the son the she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she she"</p>
+            <h3>What did we learn?</h3>
+            <p>We learned that machine learning takes a lot of time as well as computer power, and we need to plan the architecture before we scale it. Otherwise, we might get unsatisfied results after all the effort. We also learned to utilize a virtual machine to help us train the model.</p>
+            <h3>If we have unlimited time ...</h3>
+            <p>Stronger computer, more data, add more layer more epochs, continue to improve architecchure. Generative adversarial networks</p>
         </div>
     </div>
     

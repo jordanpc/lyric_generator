@@ -1,11 +1,33 @@
 .navbar {
-    background: url('https://warwick.ac.uk/fac/arts/english/postgraduatestudies/pgtcourses/writing/maw_box.png');
+    background-image: url('https://warwick.ac.uk/fac/arts/english/postgraduatestudies/pgtcourses/writing/maw_box.png');
+    background-size: cover;
     padding: 30px;
-    color: antiquewhite
+    color: antiquewhite;
+    height: 130px;
+    margin-top: 20px;
+    padding: 10px;
 }
 
-.navbar-header {
-    color: azure
+.screenshot {
+    padding: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 100%;
+    height: 100%;
+}
+
+.img-circle {
+    padding: 2%;
+}
+
+.navbar-brand {
+    font-size: 40px;
+    color:white;
+    margin-top: 20px;
+}
+
+.caption {
+    text-align: center
 }
 
 .name {
@@ -16,3 +38,10 @@
     background-color: lightgray;
     padding: 15px
 }
+
+.navbar-nav {
+    font-size: 15px;
+    margin-top: 30px;
+    color: azure;
+}
+

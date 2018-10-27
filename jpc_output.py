@@ -52,7 +52,7 @@ model.add(LSTM(256, input_shape=(X.shape[1], X.shape[2]), return_sequences=True)
 model.add(LeakyReLU(alpha=0.2))
 model.add(BatchNormalization(momentum=0.8))
 model.add(Dropout(0.2))
-model.add(LSTM(128, return_sequences=True))
+model.add(LSTM(128))
 model.add(LeakyReLU(alpha=0.2))
 model.add(BatchNormalization(momentum=0.8))
 model.add(Dropout(0.2))
@@ -60,11 +60,11 @@ model.add(Dense(y.shape[1], activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
 # define the checkpoint
-# filepath="weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
-# checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
-# callbacks_list = [checkpoint]
+filepath="jpc-weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
+checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
+callbacks_list = [checkpoint]
 
-model.load_weights('jpc-weights-improvement-34-1.3735-bigger.hdf5')
+model.load_weights('jpc-weights-improvement-61-1.3151-bigger.hdf5')
 
 # pick a random seed
 start = np.random.randint(0, len(dataX)-1)
@@ -72,6 +72,7 @@ pattern = dataX[start]
 print("Seed:")
 print("\"", ''.join([int_to_char[value] for value in pattern]), "\"")
 
+print("Generated:")
 # generate characters
 # Predicted_text = []
 for i in range(500):

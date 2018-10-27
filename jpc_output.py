@@ -72,6 +72,7 @@ pattern = dataX[start]
 print("Seed:")
 print("\"", ''.join([int_to_char[value] for value in pattern]), "\"")
 
+print("Generated:")
 # generate characters
 # Predicted_text = []
 for i in range(500):

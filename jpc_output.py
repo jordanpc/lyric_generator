@@ -60,11 +60,11 @@ model.add(Dense(y.shape[1], activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
 # define the checkpoint
-# filepath="weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
-# checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
-# callbacks_list = [checkpoint]
+filepath="jpc-weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
+checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
+callbacks_list = [checkpoint]
 
-model.load_weights('jpc-weights-improvement-34-1.3735-bigger.hdf5')
+model.load_weights('jpc-weights-improvement-46-1.3421-bigger.hdf5 ')
 
 # pick a random seed
 start = np.random.randint(0, len(dataX)-1)
